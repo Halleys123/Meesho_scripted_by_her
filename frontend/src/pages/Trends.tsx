@@ -9,7 +9,7 @@ import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-map
 import { useState } from "react";
 
 import FestivalModal from "@/components/ui/FestivalModal";
-
+import FestivalCardGrid from "@/components/FestivalCardGrid";
 
 const center = { lat: 23.5937, lng: 80.9629 }; // Center of India
 
@@ -107,25 +107,8 @@ const Trends = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-6">
-  {festivals.map((festival, index) => (
-    <div
-      key={index}
-      onClick={() => setSelectedFestival(festival)}
-      className={`cursor-pointer p-6 bg-gradient-to-br ${festival.color} border-0 text-white rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-300`}
-    >
-      <div className="text-3xl mb-4">{festival.icon}</div>
-      <h3 className="text-2xl font-bold mb-2">{festival.name}</h3>
-      <p className="text-white/90 mb-6">{festival.category}</p>
-      <Button
-        variant="secondary"
-        className="w-full bg-white/20 hover:bg-white/30 text-white border-0"
-      >
-        See Insights
-      </Button>
-    </div>
-  ))}
-</div>
+           <FestivalCardGrid onFestivalClick={(festival) => setSelectedFestival(festival)} />
+
 
 {/* 🔥 Festival Insights Modal – Visible when a card is clicked */}
 {selectedFestival && (
